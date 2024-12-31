@@ -1,0 +1,10 @@
+TECNOLOGIAS UTILIZADAS:
+- Projeto criado com Next.js
+- Clerk
+- Stripe
+- Vercel
+- Prisma
+- TypeScript
+- Tailwind
+- ui.shadcn
+- GitHub
