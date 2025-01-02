@@ -2,7 +2,7 @@ TECNOLOGIAS UTILIZADAS:
 - Projeto criado com Next.js
 - Clerk
 - Stripe
-- Vercel
+- Vercel Postegres
 - Prisma
 - TypeScript
 - Tailwind
