@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import HeaderMain from "@/components/template/HeaderMain";
+import { ClerkProvider } from "@clerk/nextjs";
+import { ptBR } from '@clerk/localizations'
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +18,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "App Commerce",
-  description: "Criando um ecommerce",
+  description: "Criando um Ecommerce",
 };
 
 export default function RootLayout({
@@ -24,13 +27,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <HeaderMain />
-        {children}
-      </body>
-    </html>
+    <ClerkProvider localization={ptBR}>
+      <html lang="pt-br">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <HeaderMain />
+          {children}
+        </body>
+
+      </html>
+    </ClerkProvider>
   );
 }

@@ -1,6 +1,7 @@
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { AlignRight, Home, ShoppingCart } from "lucide-react";
+import { AlignRight, Home, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export default function HeaderMobile() {
     return (
@@ -12,7 +13,7 @@ export default function HeaderMobile() {
                 <Sheet>
                     <SheetTrigger><AlignRight size={16} /></SheetTrigger>
                     <SheetContent className="w-[300px]" side="left">
-                        <nav className='grid gap-6 text-sm mt-7 p-2'>
+                        <nav className='flex flex-col gap-6 text-sm mt-7 p-2'>
 
                             <Link href="#" className="flex gap-4">
                                 <Home size={16} />
@@ -23,6 +24,18 @@ export default function HeaderMobile() {
                                 <ShoppingCart size={16} />
                                 <h2 className="text-sm">Carrinho</h2>
                             </Link>
+                            <div className="flex">
+                                <SignedIn>
+                                    <UserButton />
+                                </SignedIn>
+                                <div className="flex flex-row gap-6">
+                                    <User size={16} />
+                                    <SignedOut>
+                                        <button className="text-sm">Login</button>
+                                    </SignedOut>
+                                </div>
+                            </div>
+
                         </nav>
                     </SheetContent>
                 </Sheet>
