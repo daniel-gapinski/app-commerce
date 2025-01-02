@@ -6,5 +6,6 @@ TECNOLOGIAS UTILIZADAS:
 - Prisma
 - TypeScript
 - Tailwind
+- Clsx
 - ui.shadcn
 - GitHub
