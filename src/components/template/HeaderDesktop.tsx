@@ -3,6 +3,7 @@ import Link from "next/link";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 export default function HeaderDesktop() {
+
     return (
         <header className="hidden md:block w-full scroll-px-24 border-b border-gray-200 ">
             <div className="w-full flex items-center justify-between py-5 px-7">
