@@ -4,6 +4,7 @@ import "./globals.css";
 import HeaderMain from "@/components/template/HeaderMain";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ptBR } from '@clerk/localizations'
+import Hydrate from "@/components/Hydrate";
 
 
 const geistSans = Geist({
@@ -32,7 +33,9 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <HeaderMain />
+          <Hydrate>
+            <HeaderMain />
+          </Hydrate>
           {children}
         </body>
 
