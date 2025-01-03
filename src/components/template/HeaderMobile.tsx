@@ -2,6 +2,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { AlignRight, Home, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import CartIcon from "../CartIcon";
 
 export default function HeaderMobile() {
     return (
@@ -20,8 +21,8 @@ export default function HeaderMobile() {
                                 <h2 className="text-sm">Página Inicial</h2>
                             </Link>
 
-                            <Link href="#" className="flex gap-4">
-                                <ShoppingCart size={16} />
+                            <Link href="/cart" className="flex gap-4">
+                                <CartIcon />
                                 <h2 className="text-sm">Carrinho</h2>
                             </Link>
                             <div className="flex">
