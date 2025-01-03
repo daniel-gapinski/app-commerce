@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
 import { IncomingHttpHeaders } from "http";
-import { Webhook } from 'svix';
+import { Webhook, WebhookRequiredHeaders } from 'svix';
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { EmailAddress } from "@clerk/nextjs/server";
@@ -38,6 +38,43 @@ async function handler(request: Request) {
         'svix-signature': (await headersList).get('svix-signature'),
     };
     const wh = new Webhook(webhookSecret);
+    let evt: Event | null = null;
+
+    try {
+        evt = wh.verify(
+            JSON.stringify(payload),
+            heads as IncomingHttpHeaders & WebhookRequiredHeaders
+        ) as Event;
+    } catch(err){
+        console.error((err as Error).message);
+        return NextResponse.json({}, {status: 400});
+    }
+
+    const eventType: EventType = evt.type;
+
+    if(eventType === "user.created"|| eventType === "user.updated") {
+        const {
+            id,
+            first_name,
+            last_name,
+            email_addresses,
+            primary_email_address_id,
+            ...attributes
+        } = evt.data;
+
+        await prisma.user.upsert({
+            where: { externalId: id as string },
+            create: {
+                externalId: id as string,
+                attributes
+            },
+            update: {
+                attributes
+            }
+        });
+    }
+
+    return NextResponse.json({}, { status: 200 });
 }
 
 export const GET = handler;

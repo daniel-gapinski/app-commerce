@@ -1,5 +1,6 @@
 import { ProductType } from "@/types/ProductType";
 import ProductImage from "./ProductImage";
+import { formatPrice } from "@/lib/utils";
 
 type ProductProps = {
     product: ProductType
@@ -13,8 +14,8 @@ export default async function Product({ product }: ProductProps) {
                 <ProductImage product={product} fill  />
             </div>
             <div className="flex justify-between text-sm">
-                <p className="text-sm truncate w-40">{product.title}</p>
-                <p className="text-sm">{product.price}</p>
+                <p className="text-sm truncate w-40">{product.name}</p>
+                <p className="text-sm">{formatPrice(product.price)}</p>
             </div>
             <div className="flex items-center justify-center w-full py-3">
                 <button className="bg-teal-600 p-2 rounded text-white text-[12px] text-center w-full">Adicionar ao Carrinho</button>
